@@ -8,11 +8,9 @@ services:
   chrome:
     links:
     - hub
-    container_name: chrome
     image: selenium/node-chrome:2.53.0
 
   firefox:
     links:
     - hub
-    container_name: firefox
     image: selenium/node-firefox:2.53.0
