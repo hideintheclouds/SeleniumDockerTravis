@@ -1,0 +1,29 @@
+language: java
+
+jdk:
+  - oraclejdk8
+services:
+  - docker
+
+env:
+- HUB_VERSION=2.53.0
+- FIREFOX_VERSION=2.53.0
+- CHROME_VERSION=2.53.0
+
+before_install:
+- docker pull docker pull selenium/hub:${HUB_VERSION};
+- docker pull selenium/node-chrome:${FIREFOX_VERSION};
+- docker pull selenium/node-chrome:${CHROME_VERSION};
+- docker run -d --name selenium-hub -p 4444:4444 selenium/hub:${HUB_VERSION}
+- CH=$(docker run --rm --name=ch \
+    --link selenium-hub:hub -v /e2e/uploads:/e2e/uploads \
+    selenium/node-chrome:${CHROME_VERSION})
+- FF=$(docker run --rm --name=fx \
+    --link selenium-hub:hub -v /e2e/uploads:/e2e/uploads \
+    selenium/node-firefox:${FIREFOX_VERSION})
+
+script:
+  - mvn test
+
+after_success:
+  - echo "All done!"
