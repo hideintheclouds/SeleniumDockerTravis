@@ -13,11 +13,11 @@ before_install:
 - docker pull selenium/node-firefox:${FIREFOX_VERSION};
 - docker pull selenium/node-chrome:${CHROME_VERSION};
 - docker run -d --name selenium-hub -p 4444:4444 selenium/hub:${HUB_VERSION}
-- CH=$(docker run --rm --name=ch \
-    --link selenium-hub:hub -v /e2e/uploads:/e2e/uploads \
-    selenium/node-chrome:${CHROME_VERSION})
-- FF=$(docker run --rm --name=fx \
-    --link selenium-hub:hub -v /e2e/uploads:/e2e/uploads \
+- CH=$(docker run --rm --name=ch
+	--link selenium-hub:hub -v /e2e/uploads:/e2e/uploads 
+	selenium/node-chrome:${CHROME_VERSION})
+- FF=$(docker run --rm --name=fx
+	--link selenium-hub:hub -v /e2e/uploads:/e2e/uploads
     selenium/node-firefox:${FIREFOX_VERSION})
 
 script:
