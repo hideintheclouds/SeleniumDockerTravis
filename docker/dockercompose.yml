@@ -1,6 +1,5 @@
 version: '2'
 services:
-- docker run -d --name selenium-hub -p 4444:4444 selenium/hub:${HUB_VERSION}
  selenium-hub:
     container_name: chrome
     image: selenium/hub:2.53.0
