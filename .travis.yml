@@ -10,8 +10,8 @@ env:
 
 before_install:
 - docker run -d --name selenium-hub -p 4444:4444 selenium/hub:2.53.0
-- docker run --d --name=chrome --link selenium-hub:hub -v /e2e/uploads:/e2e/uploads  selenium/node-chrome:2.53.0
-- docker run --d --name=firefox --link selenium-hub:hub -v /e2e/uploads:/e2e/uploads  selenium/node-firefox:2.53.0
+- docker run -d --name=chrome --link selenium-hub:hub -v /e2e/uploads:/e2e/uploads  selenium/node-chrome:2.53.0
+- docker run -d --name=firefox --link selenium-hub:hub -v /e2e/uploads:/e2e/uploads  selenium/node-firefox:2.53.0
 - docker ps -a
 
 script:
