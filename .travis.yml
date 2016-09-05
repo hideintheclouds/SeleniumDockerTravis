@@ -12,7 +12,7 @@ env:
 
 before_install:
 - docker pull selenium/hub:${HUB_VERSION};
-- docker pull selenium/node-chrome:${FIREFOX_VERSION};
+- docker pull selenium/node-firefox:${FIREFOX_VERSION};
 - docker pull selenium/node-chrome:${CHROME_VERSION};
 - docker run -d --name selenium-hub -p 4444:4444 selenium/hub:${HUB_VERSION}
 - CH=$(docker run --rm --name=ch \
