@@ -31,7 +31,7 @@ public class GoogleTest {
 			if (driver==null){
 				if (browserType.equals("firefox")){
 					try {
-						driver = new RemoteWebDriver(new URL("http://192.168.99.100:4444/wd/hub"), DesiredCapabilities.firefox());
+						driver = new RemoteWebDriver(new URL("http://0.0.0.0:4444/wd/hub"), DesiredCapabilities.firefox());
 					} catch (MalformedURLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -44,7 +44,7 @@ public class GoogleTest {
 					ChromeOptions options = new ChromeOptions();
 					options.addArguments("no-sandbox");
 					try {
-						driver = new RemoteWebDriver(new URL("http://192.168.99.100:4444/wd/hub"), DesiredCapabilities.chrome());
+						driver = new RemoteWebDriver(new URL("http://0.0.0.0:4444/wd/hub"), DesiredCapabilities.chrome());
 					} catch (MalformedURLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
