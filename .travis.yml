@@ -11,7 +11,7 @@ env:
 - CHROME_VERSION=2.53.0
 
 before_install:
-- docker pull docker pull selenium/hub:${HUB_VERSION};
+- docker pull selenium/hub:${HUB_VERSION};
 - docker pull selenium/node-chrome:${FIREFOX_VERSION};
 - docker pull selenium/node-chrome:${CHROME_VERSION};
 - docker run -d --name selenium-hub -p 4444:4444 selenium/hub:${HUB_VERSION}
@@ -27,4 +27,3 @@ script:
 
 after_success:
   - echo "All done!"
-  
