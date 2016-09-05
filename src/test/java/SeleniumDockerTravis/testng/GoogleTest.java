@@ -75,7 +75,7 @@ public class GoogleTest {
 
 	@BeforeMethod(alwaysRun=true)
 	@Parameters("browser")
-	protected void testMethodStart(@Optional("firefox") String browser){
+	protected void testMethodStart(@Optional("chrome") String browser){
 		DriverManager.setupDriver(browser);
 	}
 	

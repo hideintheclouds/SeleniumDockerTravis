@@ -9,7 +9,8 @@ env:
 - HUB_VERSION=2.53.0 FIREFOX_VERSION=2.53.0 CHROME_VERSION=2.53.0
 
 before_install:
-- docker-compose -f ./docker/dockercompose.yml up chrome=3 -d
+- docker run -d --name selenium-hub -p 4444:4444 selenium/hub:2.53.0
+- docker run --rm --name=ch --link selenium-hub:hub -v /e2e/uploads:/e2e/uploads  selenium/node-chrome:2.53.0
 - docker ps -a
 - docker ps
 
