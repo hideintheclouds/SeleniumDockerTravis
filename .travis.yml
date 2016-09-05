@@ -9,10 +9,10 @@ env:
 - HUB_VERSION=2.53.0 FIREFOX_VERSION=2.53.0 CHROME_VERSION=2.53.0
 
 before_install:
-- docker-compose -f ./docker/dockercompose.yml up -d
-- docker-compose scale chrome=5 firefox=5
+- docker-compose -f ./docker/dockercompose.yml up chrome=3 -d
 - docker ps -a
 - docker ps
+
 script:
   - mvn test
 
