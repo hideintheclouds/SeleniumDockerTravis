@@ -5,14 +5,18 @@ services:
   - docker
 
 env:
-- HUB_VERSION=2.53.0 FIREFOX_VERSION=2.53.0 CHROME_VERSION=2.53.0 BROWSER=chrome
-- HUB_VERSION=2.53.0 FIREFOX_VERSION=2.53.0 CHROME_VERSION=2.53.0 BROWSER=firefox
+  - HUB_VERSION=2.53.0 FIREFOX_VERSION=2.53.0 CHROME_VERSION=2.53.0 BROWSER=chrome
+  - HUB_VERSION=2.53.0 FIREFOX_VERSION=2.53.0 CHROME_VERSION=2.53.0 BROWSER=firefox
+
+cache:                                                                          
+  directories:                                                                  
+    - $HOME/.m2
 
 before_install:
-- docker run -d --name selenium-hub -p 4444:4444 selenium/hub:${HUB_VERSION}
-- docker run -d --name=chrome --link selenium-hub:hub -v /e2e/uploads:/e2e/uploads  selenium/node-chrome:${CHROME_VERSION}
-- docker run -d --name=firefox --link selenium-hub:hub -v /e2e/uploads:/e2e/uploads  selenium/node-firefox:${FIREFOX_VERSION}
-- docker ps -a
+  - docker run -d --name selenium-hub -p 4444:4444 selenium/hub:${HUB_VERSION}
+  - docker run -d --name=chrome --link selenium-hub:hub -v /e2e/uploads:/e2e/uploads  selenium/node-chrome:${CHROME_VERSION}
+  - docker run -d --name=firefox --link selenium-hub:hub -v /e2e/uploads:/e2e/uploads  selenium/node-firefox:${FIREFOX_VERSION}
+  - docker ps -a
 
 script:
   - mvn test -Dbrowser=${BROWSER}
