@@ -10,8 +10,9 @@ env:
 
 before_install:
 - docker-compose -f ./docker/dockercompose.yml up -d
+- docker-compose scale chrome=5 firefox=5
 - docker ps -a
-
+- docker ps
 script:
   - mvn test
 

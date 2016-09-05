@@ -8,6 +8,11 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.*;
 import org.testng.annotations.*;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 
 public class GoogleTest {
 	public static class DriverManager {
@@ -25,7 +30,12 @@ public class GoogleTest {
 			WebDriver driver= DriverManager.ThreadDriver.get();
 			if (driver==null){
 				if (browserType.equals("firefox")){
-					driver = new RemoteWebDriver(new URL("http://0.0.0.0:4444/wd/hub"), DesiredCapabilities.firefox());
+					try {
+						driver = new RemoteWebDriver(new URL("http://192.168.99.100:4444/wd/hub"), DesiredCapabilities.firefox());
+					} catch (MalformedURLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					//driver = new FirefoxDriver();
 					ThreadDriver.set(driver);
 					DriverManager.getDriver().manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
@@ -33,7 +43,12 @@ public class GoogleTest {
 				else if (browserType.equals("chrome")){
 					ChromeOptions options = new ChromeOptions();
 					options.addArguments("no-sandbox");
-					driver = new RemoteWebDriver(new URL("http://0.0.0.0:4444/wd/hub"), DesiredCapabilities.chrome());
+					try {
+						driver = new RemoteWebDriver(new URL("http://192.168.99.100:4444/wd/hub"), DesiredCapabilities.chrome());
+					} catch (MalformedURLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					//driver = new ChromeDriver();
 					ThreadDriver.set(driver);
 					DriverManager.getDriver().manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
@@ -60,7 +75,7 @@ public class GoogleTest {
 
 	@BeforeMethod(alwaysRun=true)
 	@Parameters("browser")
-	protected void testMethodStart(@Optional("chrome") String browser){
+	protected void testMethodStart(@Optional("firefox") String browser){
 		DriverManager.setupDriver(browser);
 	}
 	
