@@ -16,9 +16,9 @@ before_install:
 - docker run --rm --name=ch
 	--link selenium-hub:hub -v /e2e/uploads:/e2e/uploads 
 	selenium/node-chrome:${CHROME_VERSION}
-- FF=$(docker run --rm --name=fx
+- docker run --rm --name=fx
 	--link selenium-hub:hub -v /e2e/uploads:/e2e/uploads
-    selenium/node-firefox:${FIREFOX_VERSION})
+    selenium/node-firefox:${FIREFOX_VERSION}
 
 script:
   - mvn test
