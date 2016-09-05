@@ -9,11 +9,7 @@ env:
 - HUB_VERSION=2.53.0 FIREFOX_VERSION=2.53.0 CHROME_VERSION=2.53.0
 
 before_install:
-- docker pull selenium/hub:${HUB_VERSION};
-- docker pull selenium/node-firefox:${FIREFOX_VERSION};
-- docker pull selenium/node-chrome:${CHROME_VERSION};
 - docker-compose -f ./docker/dockercompose.yml up -d
-
 
 script:
   - mvn test
