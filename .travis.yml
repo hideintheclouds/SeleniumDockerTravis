@@ -14,8 +14,14 @@ before_install:
 - docker run -d --name=firefox --link selenium-hub:hub -v /e2e/uploads:/e2e/uploads  selenium/node-firefox:${FIREFOX_VERSION}
 - docker ps -a
 
+
+matrix:
+  include:
+  - env: BROWSER=chrome
+  - env: BROWSER=firefox
+
 script:
-  - mvn test
+  - mvn test -Dbrowser=$BROWSER
 
 after_script:
   - docker rm -f chrome
