@@ -6,9 +6,7 @@ services:
   - docker
 
 env:
-- HUB_VERSION=2.53.0
-- FIREFOX_VERSION=2.53.0
-- CHROME_VERSION=2.53.0
+- HUB_VERSION=2.53.0 FIREFOX_VERSION=2.53.0 CHROME_VERSION=2.53.0
 
 before_install:
 - docker pull selenium/hub:${HUB_VERSION};
