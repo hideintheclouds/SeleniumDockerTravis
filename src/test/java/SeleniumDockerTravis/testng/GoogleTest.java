@@ -25,14 +25,16 @@ public class GoogleTest {
 			WebDriver driver= DriverManager.ThreadDriver.get();
 			if (driver==null){
 				if (browserType.equals("firefox")){
-					driver = new FirefoxDriver();
+					driver = new RemoteWebDriver(new URL("http://0.0.0.0:4444/wd/hub"), DesiredCapabilities.firefox());
+					//driver = new FirefoxDriver();
 					ThreadDriver.set(driver);
 					DriverManager.getDriver().manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 				}
 				else if (browserType.equals("chrome")){
 					ChromeOptions options = new ChromeOptions();
 					options.addArguments("no-sandbox");
-					driver = new ChromeDriver();
+					driver = new RemoteWebDriver(new URL("http://0.0.0.0:4444/wd/hub"), DesiredCapabilities.chrome());
+					//driver = new ChromeDriver();
 					ThreadDriver.set(driver);
 					DriverManager.getDriver().manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 				}
