@@ -20,16 +20,19 @@ cache:
 
 before_install:
   - docker run -d --name selenium-hub -p 4444:4444 selenium/hub:${HUB_VERSION}
-  - docker run -d --name=chrome --link selenium-hub:hub -v /e2e/uploads:/e2e/uploads  selenium/node-chrome:${CHROME_VERSION}
-  - docker run -d --name=firefox --link selenium-hub:hub -v /e2e/uploads:/e2e/uploads  selenium/node-firefox:${FIREFOX_VERSION}
+  - if [ ${BROWSER} = "chrome" ]; then
+      docker run -d --name=${BROWSER} --link selenium-hub:hub -v /e2e/uploads:/e2e/uploads  selenium/node-${BROWSER}:${CHROME_VERSION}
+    fi
+  - if [ ${BROWSER} = "firefox" ]; then
+      docker run -d --name=${BROWSER} --link selenium-hub:hub -v /e2e/uploads:/e2e/uploads  selenium/node-${BROWSER}:${FIREFOX_VERSION}
+    fi
   - docker ps -a
 
 script:
   - mvn test -Dbrowser=${BROWSER}
 
 after_script:
-  - docker rm -f chrome
-  - docker rm -f firefox
+  - docker rm -f ${BROWSER}
 
 after_success:
   - echo "All done!"
