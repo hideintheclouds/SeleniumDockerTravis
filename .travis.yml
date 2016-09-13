@@ -8,11 +8,9 @@ services:
 env:
   global:
     - HUB_VERSION=2.53.0
-    - FIREFOX_VERSION=2.53.0
-    - CHROME_VERSION=2.53.0
   matrix:
-    - BROWSER=chrome 
-    - BROWSER=firefox
+    - BROWSER=chrome NODE_VERSION=2.53.0
+    - BROWSER=firefox NODE_VERSION=2.53.0
 
 cache:                                                                          
   directories:                                                                  
@@ -20,11 +18,7 @@ cache:
 
 before_install:
   - docker run -d --name selenium-hub -p 4444:4444 selenium/hub:${HUB_VERSION}
-  - if [ ${BROWSER} == "chrome" ]; then
-      docker run -d --name=${BROWSER} --link selenium-hub:hub -v /e2e/uploads:/e2e/uploads  selenium/node-${BROWSER}:${CHROME_VERSION};
-    elif [ ${BROWSER} == "firefox" ]; then
-      docker run -d --name=${BROWSER} --link selenium-hub:hub -v /e2e/uploads:/e2e/uploads  selenium/node-${BROWSER}:${FIREFOX_VERSION};
-    fi
+  - docker run -d --name=${BROWSER} --link selenium-hub:hub -v /e2e/uploads:/e2e/uploads  selenium/node-${BROWSER}:${NODE_VERSION};
   - docker ps -a
 
 script:
