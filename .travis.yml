@@ -22,8 +22,7 @@ before_install:
   - docker run -d --name selenium-hub -p 4444:4444 selenium/hub:${HUB_VERSION}
   - if [ ${BROWSER} == "chrome" ]; then
       docker run -d --name=${BROWSER} --link selenium-hub:hub -v /e2e/uploads:/e2e/uploads  selenium/node-${BROWSER}:${CHROME_VERSION};
-    fi
-  - if [ ${BROWSER} == "firefox" ]; then
+  - elif [ ${BROWSER} == "firefox" ]; then
       docker run -d --name=${BROWSER} --link selenium-hub:hub -v /e2e/uploads:/e2e/uploads  selenium/node-${BROWSER}:${FIREFOX_VERSION};
     fi
   - docker ps -a
