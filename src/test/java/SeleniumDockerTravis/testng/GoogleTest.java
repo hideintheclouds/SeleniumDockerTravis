@@ -21,7 +21,7 @@ public class GoogleTest {
 		 * DriverManager driver
 		 * shares the same web driver and use thread local to handle the multi-thread
 		 */
-		String hubAddress = (System.getProperty("hubAddress") == null) ? "http://0.0.0.0:4444/wd/hub" : System.getProperty("hubAddress");
+		static String hubAddress = (System.getProperty("hubAddress") == null) ? "http://0.0.0.0:4444/wd/hub" : System.getProperty("hubAddress");
 
 		public static ThreadLocal<WebDriver> ThreadDriver=new ThreadLocal<WebDriver>() ;
 		public static String browserType;
@@ -30,6 +30,7 @@ public class GoogleTest {
 		 * create a driver for this thread if not exist. or return it directly
 		 */
 		public static WebDriver getDriver(){
+			System.out.println("hubAddress=" + hubAddress);
 			WebDriver driver= DriverManager.ThreadDriver.get();
 			if (driver==null){
 				if (browserType.equals("firefox")){

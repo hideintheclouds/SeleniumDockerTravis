@@ -23,6 +23,9 @@
 						<parallel>methods</parallel>
 						<threadCount>10</threadCount>
 						<groups>Google,cleanup</groups>
+						<systemPropertyVariables>
+							<hubAddress>http://0.0.0.0:4444/wd/hub</hubAddress>
+						</systemPropertyVariables>
 					</configuration>
 				</plugin>
 			</plugins>
