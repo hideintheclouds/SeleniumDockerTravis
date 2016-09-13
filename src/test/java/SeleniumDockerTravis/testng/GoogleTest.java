@@ -30,7 +30,6 @@ public class GoogleTest {
 		 * create a driver for this thread if not exist. or return it directly
 		 */
 		public static WebDriver getDriver(){
-			System.out.println("hubAddress=" + hubAddress);
 			WebDriver driver= DriverManager.ThreadDriver.get();
 			if (driver==null){
 				if (browserType.equals("firefox")){

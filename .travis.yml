@@ -22,7 +22,7 @@ before_install:
   - docker ps -a
 
 script:
-  - mvn test -Dbrowser=${BROWSER} -DhubAddress=http://127.0.0.1:444/wd/hub
+  - mvn test -Dbrowser=${BROWSER} -DhubAddress=http://0.0.0.0:4444/wd/hub
 
 after_script:
   - docker rm -f ${BROWSER}
