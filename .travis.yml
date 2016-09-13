@@ -18,7 +18,7 @@ cache:
 
 before_install:
   - docker run -d --name selenium-hub -p 4444:4444 selenium/hub:${HUB_VERSION}
-  - docker run -d --name=${BROWSER} --link selenium-hub:hub -v /e2e/uploads:/e2e/uploads  selenium/node-${BROWSER}:${NODE_VERSION};
+  - docker run -d --name=${BROWSER} --link selenium-hub:hub -v /e2e/uploads:/e2e/uploads  selenium/node-${BROWSER}:${NODE_VERSION}
   - docker ps -a
 
 script:
