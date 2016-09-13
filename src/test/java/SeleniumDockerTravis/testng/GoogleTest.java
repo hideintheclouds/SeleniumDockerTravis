@@ -15,13 +15,14 @@ import java.net.URL;
 
 
 public class GoogleTest {
-	String hubAddress = (System.getProperty("hubAddress") == null) ? "http://0.0.0.0:4444/wd/hub" : System.getProperty("hubAddress");
 
 	public static class DriverManager {
 		/**
 		 * DriverManager driver
 		 * shares the same web driver and use thread local to handle the multi-thread
 		 */
+		String hubAddress = (System.getProperty("hubAddress") == null) ? "http://0.0.0.0:4444/wd/hub" : System.getProperty("hubAddress");
+
 		public static ThreadLocal<WebDriver> ThreadDriver=new ThreadLocal<WebDriver>() ;
 		public static String browserType;
 
